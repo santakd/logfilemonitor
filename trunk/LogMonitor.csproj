@@ -12,7 +12,7 @@
     <AssemblyName>LogMonitor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>0120-window.ico</ApplicationIcon>
+    <ApplicationIcon>apps_32.ico</ApplicationIcon>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="0120-window.ico" />
+    <Content Include="apps_32.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
