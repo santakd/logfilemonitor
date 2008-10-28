@@ -27,13 +27,8 @@ namespace LogMonitor
 
 		protected override void OnResize(EventArgs e)
 		{
-			tbLog.Width = this.Width - 40;
-			tbLog.Height = this.Height - 100;
-
-			btnPauseContinue.Top = this.Height - 73;
-			tbBuffer.Top = this.Height - 73;
-			btnSelectFile.Top = this.Height - 73;
-			btnSelectFile.Width = this.Width - 220;
+			tbLog.Width = this.Width - 15;
+			tbLog.Height = this.Height - 65;
 		}
 
 		private void btnSelectFile_Click(object sender, EventArgs e)
@@ -147,12 +142,11 @@ namespace LogMonitor
 			{
 				bufferChars = long.Parse(tbBuffer.Text);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				tbBuffer.Text = bufferChars.ToString();
 			}
 		}
-
 
 	}
 
