@@ -96,8 +96,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="0120-window.ico" />
     <Content Include="apps_32.ico" />
+    <Content Include="open_16.png" />
+    <Content Include="pause_16.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

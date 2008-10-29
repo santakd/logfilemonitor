@@ -20,9 +20,34 @@ namespace LogMonitor
 		private long bufferChars = 5000;
 
 		[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-		public WinMain()
+		public WinMain(string[] args)
 		{
 			InitializeComponent();
+
+			// if a file was passed in, we want to open it but 
+			// we have to wait until the form is fully loaded
+			if (args.Length > 0)
+			{
+				logFileName = args[0].ToString();
+			}
+		}
+
+		/// <summary>
+		/// Once the form is fully loaded, check for command line 
+		/// parameters and load the file if necessary
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void WinMain_Load(object sender, EventArgs e)
+		{
+			timer1.Enabled = false;
+			timer1.Tick += new System.EventHandler(this.ScrollToBottom);
+			timer1.Interval = 200;
+
+			if (logFileName != "")
+			{
+				StartMonitoring();
+			}
 		}
 
 		protected override void OnResize(EventArgs e)
@@ -31,6 +56,11 @@ namespace LogMonitor
 			tbLog.Height = this.Height - 65;
 		}
 
+		/// <summary>
+		/// Opens a dialog to select a new file
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnSelectFile_Click(object sender, EventArgs e)
 		{
 			//Stream myStream = null;
@@ -44,12 +74,7 @@ namespace LogMonitor
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
 			{
 				logFileName = openFileDialog1.FileName;
-				logFileInfo = new FileInfo(logFileName);
-				btnSelectFile.Text = "Selected File: " + logFileName;
-
-				UpdateDisplay();
 				StartMonitoring();
-
 			}
 
 		}
@@ -59,22 +84,45 @@ namespace LogMonitor
 		/// </summary>
 		private void StartMonitoring()
 		{
+			logFileInfo = new FileInfo(logFileName);
+			btnSelectFile.Text = "Selected File: " + logFileName;
+
 			fileSystemWatcher1.Path = logFileInfo.DirectoryName;
 			fileSystemWatcher1.NotifyFilter = NotifyFilters.LastWrite;
 			fileSystemWatcher1.Filter = logFileInfo.Name;
 			fileSystemWatcher1.Changed += new FileSystemEventHandler(this.OnChanged);
+
+			UpdateDisplay();
 
 			fileSystemWatcher1.EnableRaisingEvents = true;
 			btnPauseContinue.Text = "Pause";
 
 		}
 
+		/// <summary>
+		/// Fired by the filesystem listener when the logfile has changed
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="e"></param>
+		private void OnChanged(object source, FileSystemEventArgs e)
+		{
+			UpdateDisplay();
+		}
+
+		/// <summary>
+		/// Stops watching for changes
+		/// </summary>
 		private void StopMonitoring()
 		{
 			fileSystemWatcher1.EnableRaisingEvents = false;
 			btnPauseContinue.Text = "Continue";
 		}
 
+		/// <summary>
+		/// Fired when the user clicks the pause/continue button
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnPauseContinue_Click(object sender, EventArgs e)
 		{
 			if (logFileName != "")
@@ -90,9 +138,12 @@ namespace LogMonitor
 			}
 		}
 
+		/// <summary>
+		/// Updates the textarea with the tail of the logfile and
+		/// scrolls to the bottom
+		/// </summary>
 		private void UpdateDisplay()
 		{
-
 			try
 			{
 				logFileStream = new FileStream(
@@ -103,7 +154,7 @@ namespace LogMonitor
 			}
 			catch (Exception ex)
 			{
-				tbLog.Text = "Error: Could not read file from disk. Original error: " + ex.Message;
+				tbLog.Text = "ERROR: Unable to open file: " + ex.Message;
 			} 
 
 			if (logFileStream != null)
@@ -113,29 +164,19 @@ namespace LogMonitor
 				tbLog.Text = logFileReader.ReadToEnd();
 				logFileReader.Close();
 				logFileStream.Close();
-
-				// scroll to the bottom
-				tbLog.SelectionStart = tbLog.Text.Length;
-				tbLog.ScrollToCaret();
-
 			}
 			else
 			{
-				tbLog.Text = "Unable to read stream";
+				tbLog.Text = "ERROR: The file stream returned null";
 			}
 			
 		}
 
 		/// <summary>
-		/// 
+		/// Handles changing of the character buffer textbox
 		/// </summary>
-		/// <param name="source"></param>
+		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void OnChanged(object source, FileSystemEventArgs e)
-		{
-			UpdateDisplay();
-		}
-
 		private void tbBuffer_TextChanged(object sender, EventArgs e)
 		{
 			try
@@ -146,6 +187,25 @@ namespace LogMonitor
 			{
 				tbBuffer.Text = bufferChars.ToString();
 			}
+		}
+
+		/// <summary>
+		/// When the main text area changes, scroll to the bottom
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void tbLog_TextChanged(object sender, EventArgs e)
+		{
+
+			timer1.Enabled = true;
+		}
+
+		private void ScrollToBottom(object sender, EventArgs e)
+		{
+			timer1.Enabled = false;
+			tbLog.SelectionStart = tbLog.Text.Length;
+			tbLog.SelectionLength = 0;
+			tbLog.ScrollToCaret();
 		}
 
 	}
