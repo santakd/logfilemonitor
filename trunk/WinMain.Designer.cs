@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinMain));
 			this.tbLog = new System.Windows.Forms.TextBox();
 			this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
@@ -37,6 +38,7 @@
 			this.tbBuffer = new System.Windows.Forms.ToolStripTextBox();
 			this.btnPauseContinue = new System.Windows.Forms.ToolStripButton();
 			this.btnSelectFile = new System.Windows.Forms.ToolStripButton();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -44,6 +46,7 @@
 			// tbLog
 			// 
 			this.tbLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+			this.tbLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tbLog.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.tbLog.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbLog.ForeColor = System.Drawing.Color.LimeGreen;
@@ -56,6 +59,7 @@
 			this.tbLog.TabIndex = 2;
 			this.tbLog.Text = "Select a file to begin monitoring...";
 			this.tbLog.WordWrap = false;
+			this.tbLog.TextChanged += new System.EventHandler(this.tbLog_TextChanged);
 			// 
 			// fileSystemWatcher1
 			// 
@@ -123,6 +127,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "WinMain";
 			this.Text = "Log File Monitor";
+			this.Load += new System.EventHandler(this.WinMain_Load);
 			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
@@ -141,6 +146,7 @@
 		private System.Windows.Forms.ToolStripTextBox tbBuffer;
 		private System.Windows.Forms.ToolStripButton btnPauseContinue;
 		private System.Windows.Forms.ToolStripButton btnSelectFile;
+		private System.Windows.Forms.Timer timer1;
 	}
 }
 
