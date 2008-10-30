@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apps_32.ico" />
+    <Content Include="notep_16.png" />
     <Content Include="open_16.png" />
     <Content Include="pause_16.png" />
   </ItemGroup>
