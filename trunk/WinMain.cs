@@ -216,6 +216,22 @@ namespace LogMonitor
 			}
 		}
 
+		private void btnErase_Click(object sender, EventArgs e)
+		{
+			if (logFileName != "" && MessageBox.Show("Eraase the contents of the current file?", "Confirm Erase", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				FileStream fs = new FileStream(
+						logFileInfo.FullName,
+						FileMode.Open,
+						FileAccess.Write,
+						FileShare.ReadWrite);
+
+				fs.SetLength(0);
+				fs.Close();
+			}
+
+		}
+
 	}
 
 
