@@ -18,6 +18,7 @@
     </StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <StartArguments>c:\logs\QUERY.LOG</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
 </Project>

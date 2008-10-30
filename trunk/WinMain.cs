@@ -85,7 +85,7 @@ namespace LogMonitor
 		private void StartMonitoring()
 		{
 			logFileInfo = new FileInfo(logFileName);
-			btnSelectFile.Text = "Selected File: " + logFileName;
+			btnSelectFile.Text = "Monitoring: " + logFileName;
 
 			fileSystemWatcher1.Path = logFileInfo.DirectoryName;
 			fileSystemWatcher1.NotifyFilter = NotifyFilters.LastWrite;
@@ -206,6 +206,14 @@ namespace LogMonitor
 			tbLog.SelectionStart = tbLog.Text.Length;
 			tbLog.SelectionLength = 0;
 			tbLog.ScrollToCaret();
+		}
+
+		private void btnEdit_Click(object sender, EventArgs e)
+		{
+			if (logFileName != "")
+			{
+				System.Diagnostics.Process.Start("notepad.exe", logFileName);
+			}
 		}
 
 	}

@@ -38,6 +38,7 @@
 			this.tbBuffer = new System.Windows.Forms.ToolStripTextBox();
 			this.btnPauseContinue = new System.Windows.Forms.ToolStripButton();
 			this.btnSelectFile = new System.Windows.Forms.ToolStripButton();
+			this.btnEdit = new System.Windows.Forms.ToolStripButton();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
 			this.toolStrip1.SuspendLayout();
@@ -77,6 +78,7 @@
             this.lblBuffer,
             this.tbBuffer,
             this.btnPauseContinue,
+            this.btnEdit,
             this.btnSelectFile});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
@@ -114,8 +116,17 @@
 			this.btnSelectFile.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btnSelectFile.Name = "btnSelectFile";
 			this.btnSelectFile.Size = new System.Drawing.Size(131, 22);
-			this.btnSelectFile.Text = "Selected File: NONE";
+			this.btnSelectFile.Text = "Click to Select File...";
 			this.btnSelectFile.Click += new System.EventHandler(this.btnSelectFile_Click);
+			// 
+			// btnEdit
+			// 
+			this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+			this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnEdit.Name = "btnEdit";
+			this.btnEdit.Size = new System.Drawing.Size(68, 22);
+			this.btnEdit.Text = "Edit File";
+			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
 			// 
 			// WinMain
 			// 
@@ -147,6 +158,7 @@
 		private System.Windows.Forms.ToolStripButton btnPauseContinue;
 		private System.Windows.Forms.ToolStripButton btnSelectFile;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.ToolStripButton btnEdit;
 	}
 }
 
