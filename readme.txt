@@ -34,7 +34,8 @@ Cruise Control Project Example:
 		<tasks>
 			<exec>
 				<executable>C:\Path\To\LogFilePurger.exe</executable>
-				<buildArgs>"C:\Program Files\CruiseControl.NET\server\My Project\Artifacts" 90</buildArgs>
+				<!-- specify the folder path (with quotes if necessary) and number of days to keep files -->
+				<buildArgs>"C:\Program Files\CruiseControl.NET\server\My Project\Artifacts\buildlogs" 90</buildArgs>
 			</exec>
 		</tasks>
 	</project>
