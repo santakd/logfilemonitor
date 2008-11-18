@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogFilePurger", "LogFilePurger\LogFilePurger.csproj", "{40D00B91-7BD5-47EC-9503-8E7F1B4960A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogMonitor", "LogFileMonitor\LogMonitor.csproj", "{FF4C4424-2532-4D16-A189-21BBE88910B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogFileMonitor", "LogFileMonitor\LogFileMonitor.csproj", "{FF4C4424-2532-4D16-A189-21BBE88910B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCB1857A-BC63-47E7-A9E9-3AAD788608D5}"
 	ProjectSection(SolutionItems) = preProject

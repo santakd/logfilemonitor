@@ -19,7 +19,7 @@ namespace LogMonitor
 		private StreamReader logFileReader;
 		private long bufferChars = 5000;
 
-		[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+		/*[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]*/
 		public WinMain(string[] args)
 		{
 			InitializeComponent();
