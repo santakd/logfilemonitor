@@ -44,6 +44,9 @@ namespace LogMonitor
 			timer1.Tick += new System.EventHandler(this.ScrollToBottom);
 			timer1.Interval = 200;
 
+            forcedTimer.Interval = 1000;
+            updateForceTimer();
+
 			if (logFileName != "")
 			{
 				StartMonitoring();
@@ -79,13 +82,30 @@ namespace LogMonitor
 
 		}
 
+        static bool IsNetworkDrive(char driveLetter)
+        {
+            foreach (System.IO.DriveInfo drive in System.IO.DriveInfo.GetDrives())
+                if (drive.ToString()[0] == driveLetter)
+                    return drive.DriveType == System.IO.DriveType.Network;
+
+            // drive not found
+            throw new ArgumentException();
+        }
+
 		/// <summary>
 		/// Starts watching the selected file for changes
 		/// </summary>
 		private void StartMonitoring()
 		{
 			logFileInfo = new FileInfo(logFileName);
+
 			btnSelectFile.Text = "Monitoring: " + logFileName;
+
+            if (logFileName.StartsWith("//") || IsNetworkDrive( logFileName[0]) )
+            {
+                btnForced.Text = "(Network)";
+                updateForceTimer();
+            }
 
 			fileSystemWatcher1.Path = logFileInfo.DirectoryName;
 			fileSystemWatcher1.NotifyFilter = NotifyFilters.LastWrite;
@@ -231,6 +251,29 @@ namespace LogMonitor
 			}
 
 		}
+
+        /// <summary>
+        /// forcedTimer is used to automatically refresh the file in the case where
+        /// it is located on a network share that does not trigger the fileSystem
+        /// monitoring events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void forcedTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateDisplay();
+        }
+
+        private void btnForced_Click(object sender, EventArgs e)
+        {
+            btnForced.Text = btnForced.Text == "(Local)" ? "(Network)" : "(Local)";
+            updateForceTimer();
+        }
+
+        private void updateForceTimer()
+        {
+            forcedTimer.Enabled = btnForced.Text == "(Network)";
+        }
 
 	}
 
