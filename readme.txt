@@ -1,6 +1,6 @@
 LogFileSuite
 ------------
-
+ 
 Collection of utility apps for working with logfiles
 
 LogFilePurger:
@@ -17,6 +17,7 @@ Command Line Parameters:
     Example:
     
     LogFilePurger.exe "c:\logs" 90
+    LogFilePurger.exe "d:\logs" 60
 
     When param1 is provided, the UI will not appear and the app will immediately 
     clean the folder with no prompts.  If there is an error, it will be written to
@@ -51,6 +52,7 @@ Allows you to monitor logfiles in realtime.
     example:
     
     LogMonitor.exe "c:\logs\myfile.log"
+    LogMonitor.exe "d:\logs\myfile.log"
 
     When param1 is provided, the UI will open and instantly start 
     monitoring the specified file
