@@ -1,7 +1,6 @@
 LogFileSuite
 ------------
 
-
 Collection of utility apps for working with logfiles
 
 LogFilePurger:
