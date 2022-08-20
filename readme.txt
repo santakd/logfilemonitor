@@ -57,4 +57,3 @@ Allows you to monitor logfiles in realtime.
     When param1 is provided, the UI will open and instantly start 
     monitoring the specified file
 
-
