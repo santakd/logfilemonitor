@@ -21,7 +21,7 @@ Command Line Parameters:
 
     When param1 is provided, the UI will not appear and the app will immediately 
     clean the folder with no prompts.  If there is an error, it will be written to
-    a logfile within the same directoy as the executable
+    a logfile within the same directory as the executable
 
 
 Cruise Control Project Example:
