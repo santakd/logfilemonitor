@@ -1,7 +1,7 @@
 LogFileSuite
 ------------
 
-Collection of utility apps for working with logfiles
+Collection of utility apps for working with logfiles on Windows.
 
 LogFilePurger:
 --------------
